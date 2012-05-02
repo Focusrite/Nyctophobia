@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Technical">
+      <UniqueIdentifier>{18107c68-8688-4ec7-a592-37237311e3ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Technical">
+      <UniqueIdentifier>{909f5d69-5fc4-4560-9782-6b3dbaa329dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Technical\Math">
+      <UniqueIdentifier>{93c47ebc-3496-4c3d-bd03-714bc469f934}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Technical\Math">
+      <UniqueIdentifier>{b96153ba-0f78-46da-be27-4123f54e52ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{ebb77af6-de03-41e1-a796-37612543644c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{4755c7fc-f8f9-442b-82fe-c00da61f0345}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Technical\External">
+      <UniqueIdentifier>{e94a6b6f-9472-4492-88b7-0a212ad55dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Technical\External">
+      <UniqueIdentifier>{b51a6f57-a851-4ef8-9183-db2070e51ce6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\State">
+      <UniqueIdentifier>{0163e555-25fa-49e1-884c-c4395e35fb4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\State">
+      <UniqueIdentifier>{7b42f118-2a2d-4738-afa8-3d0c985a0a54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Object">
+      <UniqueIdentifier>{bb9f2455-5a43-40a0-af36-2e59677a3ba1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Object">
+      <UniqueIdentifier>{f019c311-91cb-41a5-b451-135815218199}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Technical\Graphics">
+      <UniqueIdentifier>{34b66094-c899-4ce7-b2dc-23e7324b46d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Technical\Graphics">
+      <UniqueIdentifier>{16304d72-6949-498a-83e2-f05f89a26fac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Menu">
+      <UniqueIdentifier>{458574f4-4a22-4f1d-be3b-575f92384875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Menu">
+      <UniqueIdentifier>{ffa3b383-b44a-4283-857e-e2e39d9e65ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Scripting">
+      <UniqueIdentifier>{7d27eb2e-2e0c-4ddd-8f18-226c67115a47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Scripting">
+      <UniqueIdentifier>{b3c75072-1d79-42b0-b680-99e358c63a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Object\Light">
+      <UniqueIdentifier>{cac10174-cbc7-422e-b413-0328a08417a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Object\Light">
+      <UniqueIdentifier>{f6154d7c-9820-4e98-8d94-27dac300773b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="d3dUtil.h">
+      <Filter>Header Files\Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectInput.h">
+      <Filter>Header Files\Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="GfxStats.h">
+      <Filter>Header Files\Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="Runnable.h">
+      <Filter>Header Files\Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>Header Files\Technical\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Header Files\Technical\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Header Files\Technical\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files\Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="Stackwalker.h">
+      <Filter>Header Files\Technical\External</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Playstate.h">
+      <Filter>Header Files\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Header Files\Technical\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="cPolygon.h">
+      <Filter>Header Files\Technical\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangulate.h">
+      <Filter>Header Files\Technical\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Header Files\Technical\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableTex2D.h">
+      <Filter>Header Files\Technical\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines.h">
+      <Filter>Header Files\Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="Effects.h">
+      <Filter>Header Files\Technical\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Technical</Filter>
+    </ClInclude>
+    <ClInclude Include="Menustate.h">
+      <Filter>Header Files\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\Game\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Script.h">
+      <Filter>Header Files\Game\Scripting</Filter>
+    </ClInclude>
+    <ClInclude Include="LightHandler.h">
+      <Filter>Header Files\Game\Object\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicLight.h">
+      <Filter>Header Files\Game\Object\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="FileInput.h">
+      <Filter>Header Files\Technical</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DirectInput.cpp">
+      <Filter>Source Files\Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="GfxStats.cpp">
+      <Filter>Source Files\Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="Runnable.cpp">
+      <Filter>Source Files\Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files\Technical\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.cpp">
+      <Filter>Source Files\Technical\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="Stackwalker.cpp">
+      <Filter>Source Files\Technical\External</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayState.cpp">
+      <Filter>Source Files\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="cPolygon.cpp">
+      <Filter>Source Files\Technical\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangulate.cpp">
+      <Filter>Source Files\Technical\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Source Files\Technical\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawableTex2D.cpp">
+      <Filter>Source Files\Technical\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Effects.cpp">
+      <Filter>Source Files\Technical\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Technical</Filter>
+    </ClCompile>
+    <ClCompile Include="Menustate.cpp">
+      <Filter>Source Files\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Game\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Script.cpp">
+      <Filter>Source Files\Game\Scripting</Filter>
+    </ClCompile>
+    <ClCompile Include="LightHandler.cpp">
+      <Filter>Source Files\Game\Object\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicLight.cpp">
+      <Filter>Source Files\Game\Object\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="FileInput.cpp">
+      <Filter>Source Files\Technical</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader.fx">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Data\Images\icon.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Data\Scripts\Levels\template.xml">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Nyctophobia.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

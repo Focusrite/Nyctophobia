@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level name="Level Template">
+  <objects>
+    <object type="0" x="300" y="300">
+      <data ex="400" ey="400"></data>
+    </object>
+    <object type="0" x="200" y="200">
+      <data ex="300" ey="200"></data>
+    </object>
+    <object type="2" x="280" y="350">
+      <data range="300" intensity="0.7"></data>
+    </object>
+    <object type="2" x="700" y="500">
+      <data range="500" intensity="0.1"></data>
+    </object>
+  </objects>
+  <regions>
+
+  </regions>
+</level>
