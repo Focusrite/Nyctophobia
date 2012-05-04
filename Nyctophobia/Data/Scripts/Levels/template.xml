@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <level name="Level Template">
   <objects>
-    <object type="0" x="300" y="300">
-      <data ex="400" ey="400"></data>
-    </object>
-    <object type="0" x="200" y="200">
-      <data ex="300" ey="200"></data>
-    </object>
-    <object type="2" x="280" y="350">
-      <data range="300" intensity="0.7"></data>
-    </object>
-    <object type="2" x="700" y="500">
-      <data range="500" intensity="0.1"></data>
-    </object>
   </objects>
   <regions>
 
   </regions>
+  <levelData name="Template" campaign="0" campaignOrder="0" width="2000" height="2000">
+    <player x="200" y="200">
+      
+    </player>
+    <terrain>
+      <texture name="Cobblestone" texturePath="Data\\Images\\Ground\\cobblestone.png" blendPath="Data\\Images\\Alphasquare.png"></texture>
+    </terrain>
+  </levelData>
 </level>
