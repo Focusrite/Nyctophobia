@@ -32,6 +32,10 @@ Effects::Effects()
 	mhRotation = mFX->GetParameterByName(0, "gRotation");
 	mhShadowColorMod = mFX->GetParameterByName(0, "gShadowMod");
 	mFX->SetFloatArray(mhShadowColorMod, rgb, 3);
+
+	mhTerrainBlendMap = mFX->GetParameterByName(0, "gBlendMap2");
+	mhUseTerrainBlend = mFX->GetParameterByName(0, "gUseSecondBlend");
+	HR(mFX->SetBool(mhUseTerrainBlend, false));
 }
 
 void Effects::setRotation(float v)
@@ -66,9 +70,18 @@ void Effects::setBlendMap(IDirect3DTexture9* texture)
 	HR(mFX->SetTexture(mhBlendMap, texture));
 }
 
+void Effects::setTerrainBlendMap(IDirect3DTexture9* texture)
+{
+	if(texture!=NULL) {
+		HR(mFX->SetBool(mhUseTerrainBlend, true));
+		HR(mFX->SetTexture(mhTerrainBlendMap, texture));
+	}
+	else
+		HR(mFX->SetBool(mhUseTerrainBlend, false));
+}
+
 Effects::~Effects()
 {
 	ReleaseCOM(mFX);
-	//ReleaseCOM(dbgErrors);
 	delete dbgErrors;
 }

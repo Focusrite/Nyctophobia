@@ -5,6 +5,8 @@
 uniform extern float4x4 gWVP;
 uniform extern texture	gTex;
 uniform extern texture	gBlendMap;
+uniform extern texture	gBlendMap2;
+uniform extern bool		gUseSecondBlend;
 uniform extern float	gRotation;
 uniform extern float3	gShadowMod;
 
@@ -22,6 +24,16 @@ sampler TexS = sampler_state
 sampler BlendMapS = sampler_state
 {
 	Texture = <gBlendMap>;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	MipFilter = LINEAR;
+	AddressU = WRAP;
+	AddressV = WRAP;
+};
+
+sampler BlendMap2S = sampler_state
+{
+	Texture = <gBlendMap2>;
 	MinFilter = LINEAR;
 	MagFilter = LINEAR;
 	MipFilter = LINEAR;
@@ -181,12 +193,18 @@ Output2VS BlendTexVS(float3 posL : POSITION0, float2 tex0 : TEXCOORD0, float2 te
 float4 BlendTexPS(float2 tex0 : TEXCOORD0, float2 tex1 : TEXCOORD1) : COLOR //, float2 tex : TEXCOORD0
 {
 	float4 clr = float4(tex2D(TexS, tex0).rgba);
+	float4 clr2;
+	if(gUseSecondBlend == false)
+		clr2 = float4(1,1,1,1);
+	else
+		clr2 = tex2D(BlendMap2S, tex1);
+
 	clr.r *= gShadowMod.r;
 	clr.g *= gShadowMod.g;
 	clr.b *= gShadowMod.b;
 
 	float3 b = tex2D(BlendMapS, tex1).r;
-	float alpha = (b.r);
+	float alpha = (b.r) * ((clr2.r+clr2.g+clr2.b)/3);
 
 	clr.a *= alpha;
     return clr;

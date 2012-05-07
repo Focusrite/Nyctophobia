@@ -24,6 +24,12 @@ void LightHandler::addObstacle(Object* obj)
 	mObstacles.push_back(obj);
 }
 
+void LightHandler::clean()
+{
+	mEmitters.clear();
+	mObstacles.clear();
+}
+
 void LightHandler::doShadow()
 {
 	for(int j = 0; j<mEmitters.size();j++)

@@ -9,6 +9,9 @@
 #include "Wall.h"
 #include "BasicLight.h"
 #include "FileInput.h"
+#include "Player.h"
+#include "Terrain.h"
+#include "Effects.h"
 
 
 using namespace rapidxml;
@@ -17,7 +20,7 @@ int Level::mIdCounter = 0;
 
 Level::Level()
 {
-
+	mInEditor = false;
 }
 
 Level::~Level()
@@ -27,6 +30,15 @@ Level::~Level()
 
 void Level::draw()
 {
+	for(int i = 0; i < mTerrainList.size(); i++)
+	{
+		if(!gGameState->drawingToAlpha())
+		{
+			gGraphics->getFXhandler()->setTerrainBlendMap(mTerrainList[i]->getBlendTexture());
+			gGraphics->drawBlendedTexture(mTerrainList[i]->getTexture(), mWidth/2, mHeight/2, mWidth, mHeight, 0, NULL, gGraphics->getAlphaTexture()->d3dTex(), mWidth/40);
+			gGraphics->getFXhandler()->setTerrainBlendMap(0);
+		}
+	}
 	for(int i = 0; i < mObjectList.size(); i++)
 	{
 		//Only draw if right layer is set
@@ -71,19 +83,20 @@ void Level::clear()
 	{
 		delete mObjectList[i];
 	}
+	for(int i = 0; i < mTerrainList.size(); i++)
+	{
+		delete mTerrainList[i];
+	}
 }
 
 void Level::loadLevel(const char* path)
 {
 	file<> file(path);
-
 	xml_document<> doc;
-
-	//parse declaration
 	doc.parse<parse_full>(file.data());
 
+	//Load objects
 	xml_node<>* objects = doc.first_node("level")->first_node("objects");
-	//loop through objects
 	xml_node<>* cur_obj = objects->first_node("object");
 	while(cur_obj != 0)
 	{
@@ -107,6 +120,29 @@ void Level::loadLevel(const char* path)
 			light->setRange(range);
 			this->addObject(light);
 		}
+		cur_obj = cur_obj->next_sibling();
+	}
+	
+	//Load level info
+	xml_node<>* levelData = doc.first_node("level")->first_node("levelData");
+	mName= std::string(levelData->first_attribute("name")->value());
+	mWidth= atoi(levelData->first_attribute("width")->value());
+	mHeight= atoi(levelData->first_attribute("height")->value());
+
+	//Load player - do from savefile
+	xml_node<>* player = levelData->first_node("player");
+	Player *p = new Player(atoi(player->first_attribute("x")->value()), atoi(player->first_attribute("y")->value()));
+	addObject(p);
+
+	//Load terrain
+	xml_node<>* terrain = levelData->first_node("terrain");
+	cur_obj = terrain->first_node("texture");
+	while(cur_obj != 0)
+	{
+		Terrain *t = new Terrain();
+		t->setTexture(gGraphics->loadTexture(cur_obj->first_attribute("texturePath")->value()));
+		t->setBlendTexture(gGraphics->loadTexture(cur_obj->first_attribute("blendPath")->value()));
+		mTerrainList.push_back(t);
 		cur_obj = cur_obj->next_sibling();
 	}
 }

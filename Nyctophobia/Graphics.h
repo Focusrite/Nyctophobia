@@ -56,7 +56,7 @@ public:
 	void drawTexture(IDirect3DTexture9 *texture, float x, float y, int width, int height, float rotation = 0.0f, bool stenciled = false, Rect* sourceRect = NULL);
 
 	//! Draw texture blended with the world-texture
-	void drawBlendedTexture(IDirect3DTexture9* texture, float x, float y, int width, int height, float rotation = 0.0f, Rect* sourceRect = NULL, IDirect3DTexture9* blend = NULL);
+	void drawBlendedTexture(IDirect3DTexture9* texture, float x, float y, int width, int height, float rotation = 0.0f, Rect* sourceRect = NULL, IDirect3DTexture9* blend = NULL, int repeats = 1);
 
 	//! Draws a part from a texture atlas.
 	void drawAnimation(IDirect3DTexture9* texture, float x, float y, int width, int height, Rect *srcRect = NULL, bool flipped = false);

@@ -7,7 +7,7 @@ class BasicLight : public Object
 {
 public:
 	BasicLight(float x, float y);
-	~BasicLight();
+	~BasicLight(){};
 
 	void update(float dt);
 	void draw();

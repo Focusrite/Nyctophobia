@@ -73,6 +73,15 @@
     <Filter Include="Source Files\Game\Object\Light">
       <UniqueIdentifier>{f6154d7c-9820-4e98-8d94-27dac300773b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Maps">
+      <UniqueIdentifier>{f4c8bab7-ffa9-4de6-b2e8-e562eb69a16b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Editor">
+      <UniqueIdentifier>{64e11d42-2fb2-42d4-ad49-114cf742521d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Editor">
+      <UniqueIdentifier>{ae4271c7-2046-4b6a-8782-a595a9d54b9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dUtil.h">
@@ -168,6 +177,15 @@
     <ClInclude Include="FileInput.h">
       <Filter>Header Files\Technical</Filter>
     </ClInclude>
+    <ClInclude Include="EditorState.h">
+      <Filter>Header Files\Game\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Terrain.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor.h">
+      <Filter>Header Files\Game\Editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectInput.cpp">
@@ -245,6 +263,12 @@
     <ClCompile Include="FileInput.cpp">
       <Filter>Source Files\Technical</Filter>
     </ClCompile>
+    <ClCompile Include="EditorState.cpp">
+      <Filter>Source Files\Game\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor.cpp">
+      <Filter>Source Files\Game\Editor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.fx">
@@ -253,8 +277,11 @@
     <None Include="Data\Images\icon.ico">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Data\Scripts\Levels\level01.xml">
+      <Filter>Resource Files\Maps</Filter>
+    </None>
     <None Include="Data\Scripts\Levels\template.xml">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Maps</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

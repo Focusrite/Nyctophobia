@@ -954,7 +954,7 @@ void Graphics::drawCircle(Vector position, float radius, D3DCOLOR color, bool fi
 	mFX->resetShadowColorMod();
 }
 
-void Graphics::drawBlendedTexture(IDirect3DTexture9* texture, float x, float y, int width, int height, float rotation, Rect* sourceRect, IDirect3DTexture9* blend)
+void Graphics::drawBlendedTexture(IDirect3DTexture9* texture, float x, float y, int width, int height, float rotation, Rect* sourceRect, IDirect3DTexture9* blend, int repeats)
 {
 	// Setup the vertexbuffer and its declaration
 	gd3dDevice->SetStreamSource(0, mVB_blendTex, 0, sizeof(BlendTexVertex));
@@ -998,7 +998,7 @@ void Graphics::drawBlendedTexture(IDirect3DTexture9* texture, float x, float y, 
 	vertices[1].pos.x = mDrawRect.right;//mDrawRect.right * cos(rotation) - mDrawRect.top * sin(rotation);
 	vertices[1].pos.y = mDrawRect.top;//mDrawRect.right * sin(rotation) + mDrawRect.top * cos(rotation);
 	vertices[1].pos.z = 0;
-	vertices[1].tex0.x = 1;
+	vertices[1].tex0.x = 1*repeats;
 	vertices[1].tex0.y = 0;
 	vertices[1].tex1.x = mAlphaRect.right;
 	vertices[1].tex1.y = mAlphaRect.top;
@@ -1006,8 +1006,8 @@ void Graphics::drawBlendedTexture(IDirect3DTexture9* texture, float x, float y, 
 	vertices[2].pos.x = mDrawRect.right;//mDrawRect.right * cos(rotation) - mDrawRect.bottom * sin(rotation);
 	vertices[2].pos.y = mDrawRect.bottom;//mDrawRect.right * sin(rotation) + mDrawRect.bottom * cos(rotation);
 	vertices[2].pos.z = 0;
-	vertices[2].tex0.x = 1;
-	vertices[2].tex0.y = 1;
+	vertices[2].tex0.x = 1*repeats;
+	vertices[2].tex0.y = 1*repeats;
 	vertices[2].tex1.x = mAlphaRect.right;
 	vertices[2].tex1.y = mAlphaRect.bottom;
 
@@ -1015,7 +1015,7 @@ void Graphics::drawBlendedTexture(IDirect3DTexture9* texture, float x, float y, 
 	vertices[3].pos.y = mDrawRect.bottom;//mDrawRect.left * sin(rotation) + mDrawRect.bottom * cos(rotation);
 	vertices[3].pos.z = 0;
 	vertices[3].tex0.x = 0;
-	vertices[3].tex0.y = 1;
+	vertices[3].tex0.y = 1*repeats;
 	vertices[3].tex1.x = mAlphaRect.left;
 	vertices[3].tex1.y = mAlphaRect.bottom;
 

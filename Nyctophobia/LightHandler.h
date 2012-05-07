@@ -14,6 +14,8 @@ public:
 	void addObstacle(Object* obj);
 	void addEmitter(BasicLight* lightSource);
 
+	void clean();
+
 	void doShadow();
 	void drawShadow(Object* obj, BasicLight* lightSource);
 

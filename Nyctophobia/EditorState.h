@@ -3,6 +3,7 @@
 #include "GameState.h"
 
 class Level;
+class Editor;
 
 class EditorState : public GameState 
 {
@@ -26,6 +27,5 @@ private:
 	static EditorState mEditorState;
 	Level* mActiveLevel;
 
-	//Editor flags
-	bool mShadowEnabled;
+	Editor* mEditor;
 };

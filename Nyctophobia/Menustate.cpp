@@ -1,7 +1,9 @@
 #include "Menustate.h"
 #include "Playstate.h"
+#include "EditorState.h"
 #include "Graphics.h"
 #include "Defines.h"
+#include "Input.h"
 
 MenuState MenuState::mMenuState;
 
@@ -33,18 +35,29 @@ void MenuState::handleEvents(UINT msg, WPARAM wParam, LPARAM lParam)
 }
 void MenuState::update(double dt)
 {
-	mTimer+=dt;
-	if(mTimer>=2*PI)
-		mTimer=0;
-	mMenu->update(dt);
-
 	//Check for Gamestate change
 	if(mMenu->startGame()) 
 	{
 		mMenuCountdown -= dt;
 		if(mMenuCountdown <= EPSILON)
-			changeState(PlayState::Instance());
+		{
+			if(mMenu->getSelectedState() == PLAY)
+				changeState(PlayState::Instance());
+			if(mMenu->getSelectedState() == EDITOR)
+				changeState(EditorState::Instance());
+		}
 	}
+	else 
+	{
+		//Check for ESQ/Q
+		if(gInput->keyPressed(VK_ESCAPE) || gInput->keyPressed('Q'))
+			PostMessage(gGame->getMainWnd(),WM_QUIT,0,0);
+		mTimer+=dt;
+		if(mTimer>=2*PI)
+			mTimer=0;
+		mMenu->update(dt);
+	}
+
 }
 void MenuState::draw()
 {

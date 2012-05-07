@@ -80,7 +80,8 @@ bool Triangulate::Process(const Vector2dVector &contour,Vector2dVector &result)
   /* allocate and initialize list of Vertices in polygon */
 
   int n = contour.size();
-  if ( n < 3 ) return false;
+  if ( n < 3 )
+	  return false;
 
   int *V = new int[n];
 
@@ -102,6 +103,7 @@ bool Triangulate::Process(const Vector2dVector &contour,Vector2dVector &result)
     if (0 >= (count--))
     {
       //** Triangulate: ERROR - probable bad polygon!
+	  delete[] V;
       return false;
     }
 
@@ -130,11 +132,9 @@ bool Triangulate::Process(const Vector2dVector &contour,Vector2dVector &result)
       /* resest error detection counter */
       count = 2*nv;
     }
-  }
+  }	
 
-
-
-  delete V;
+  delete[] V;
 
   return true;
 }

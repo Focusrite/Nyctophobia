@@ -22,6 +22,7 @@ public:
 	void setRotation(float v);
 	void setShadowColorMod(float* mod);
 	void resetShadowColorMod();
+	void setTerrainBlendMap(IDirect3DTexture9* texture);
 
 private:
 	ID3DXEffect* mFX;
@@ -30,6 +31,8 @@ private:
 	D3DXHANDLE mhWVP;
 	D3DXHANDLE mhTexture;
 	D3DXHANDLE mhBlendMap;
+	D3DXHANDLE mhTerrainBlendMap;
+	D3DXHANDLE mhUseTerrainBlend;
 	D3DXHANDLE mhRotation;
 	D3DXHANDLE mhScreenSize;
 	D3DXHANDLE mhShadowColorMod;

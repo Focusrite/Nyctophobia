@@ -17,12 +17,15 @@
     <ClInclude Include="Defines.h" />
     <ClInclude Include="DirectInput.h" />
     <ClInclude Include="DrawableTex2D.h" />
+    <ClInclude Include="Editor.h" />
+    <ClInclude Include="EditorState.h" />
     <ClInclude Include="Effects.h" />
     <ClInclude Include="FileInput.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GfxStats.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LightHandler.h" />
@@ -48,6 +51,8 @@
     <ClCompile Include="cPolygon.cpp" />
     <ClCompile Include="DirectInput.cpp" />
     <ClCompile Include="DrawableTex2D.cpp" />
+    <ClCompile Include="Editor.cpp" />
+    <ClCompile Include="EditorState.cpp" />
     <ClCompile Include="Effects.cpp" />
     <ClCompile Include="FileInput.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -79,7 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Images\icon.ico" />
-    <None Include="Data\Scripts\Levels\template.xml" />
+    <None Include="Data\Scripts\Levels\level01.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Data\Scripts\Levels\template.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="shader.fx" />
   </ItemGroup>
   <ItemGroup>

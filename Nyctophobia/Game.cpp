@@ -45,7 +45,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 	gFileInput = new FileInput();
 	gLightHandler = new LightHandler();
 
-	/* this is where the gamegets runned */
+	/* this is where the game is ran */
 	return gGame->run();
 }
 
@@ -69,9 +69,6 @@ Game::~Game()
 	// :WARNING: Maybe needs to call ~Runnable()
 	mGameState->cleanup();
 
-	// Print memory leaks to xml file
-	DeInitAllocCheck();
-
 	delete gInput;
 	delete gGraphics;
 	delete gScript;
@@ -80,6 +77,9 @@ Game::~Game()
 	delete gMath;
 	//delete gGameState;
 	delete mGfxStats;
+
+	// Print memory leaks to xml file
+	DeInitAllocCheck();
 }
 
 void Game::init()
