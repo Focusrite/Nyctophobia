@@ -34,7 +34,8 @@ void Editor::addTerrainLayer(Terrain *terrain)
 {
 	DrawableTex2D* texture = new DrawableTex2D(512,512, 0, D3DFMT_A8R8G8B8, true, D3DFMT_D24S8, true);
 	texture->beginScene();
-	gGraphics->drawTexture(terrain->getBlendTexture(),256,256,512,512);
+	HR(gd3dDevice->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, D3DCOLOR_ARGB(255,255,128,0), 1.0f, 0));
+	gGraphics->drawTexture(terrain->getTexture(),256,256,512,512);
 	texture->endScene();
 	terrain->releaseBlend();
 	terrain->setBlendTexture(texture->d3dTex());
@@ -51,7 +52,9 @@ void Editor::init()
 void Editor::update(float dt)
 {
 	if(!mInitialized)
+	{
 		init();
+	}
 	mActiveLevel->update(dt);
 	if(gInput->keyPressed('O'))
 	{
@@ -83,6 +86,7 @@ void Editor::update(float dt)
 		{
 			if(mCounter == 5) {
 				mTerrainBlender[mTerrainSelected]->beginScene();
+				//draw at % of Worldsize
 				gGraphics->drawCircle(gInput->mousePosition(), mDrawRadius, D3DCOLOR_ARGB(int(mDrawIntensity*255),0,0,0), true);
 				mTerrainBlender[mTerrainSelected]->endScene();
 				mCounter = 0;
@@ -100,6 +104,8 @@ void Editor::draw()
 		gGraphics->drawTexture(mArt_ShadowOn, SCREEN_WIDTH-25,SCREEN_HEIGHT-45, 30, 30);
 	else
 		gGraphics->drawTexture(mArt_ShadowOff, SCREEN_WIDTH-25,SCREEN_HEIGHT-45, 30, 30);
+	if(mToolSelected == TOOL_TERRAIN)
+		gGraphics->drawSmallDxFont("Tool Selected: Terrain", SCREEN_WIDTH-190,5, D3DCOLOR_XRGB(255,0,0));
 }
 
 void Editor::drawAlpha()
@@ -117,4 +123,8 @@ void Editor::drawAlpha()
 		HR(gd3dDevice->Clear(0, 0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, D3DCOLOR_ARGB(0,255,0,0), 1.0f, 0x00));
 	}
 	gGraphics->getAlphaTexture()->endScene();
+}
+void Editor::handleInput()
+{
+
 }

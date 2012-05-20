@@ -10,7 +10,7 @@
       
     </player>
     <terrain>
-      <texture name="Cobblestone" texturePath="Data\\Images\\Ground\\cobblestone.png" blendPath="Data\\Images\\Alphasquare.png"></texture>
+      <texture name="Cobblestone" texturePath="Data\\Images\\Ground\\cobblestone.png" blendPath="Data\\Images\\Alphatest.png"></texture>
     </terrain>
   </levelData>
 </level>

@@ -1,11 +1,12 @@
 #include <rapidxml.hpp>
 #include <rapidxml_utils.hpp>
+#include <string>
+#include "d3dUtil.h"
 
 #include "Level.h"
 #include "Object.h"
 #include "Graphics.h"
 #include "Gamestate.h"
-#include <string>
 #include "Wall.h"
 #include "BasicLight.h"
 #include "FileInput.h"

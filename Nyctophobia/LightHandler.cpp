@@ -39,7 +39,7 @@ void LightHandler::doShadow()
 		for(int i = 0; i<mObstacles.size();i++)
 		{
 			Object* o = mObstacles.at(i);
-			if(!o->getCastsShadow())
+			if(!o->getCastsShadow() && gMath->distance(o->getPos(), light->getPos()) < light->getRange())
 				continue;
 			//Shadow to alpha
 			HR(gd3dDevice->SetRenderState(D3DRS_SRCBLEND,		  D3DBLEND_ONE));
@@ -123,31 +123,33 @@ void LightHandler::drawShadow(Object* obj, BasicLight* lightSource)
 	}
 
 	//Draw
+	
+	float a=gMath->calculateAngle(lightSource->getPos(),obj->getPos());
 	temp.clear();
-	if(mod)
-		thisPoint = obj->getShadowBase().mVertices[startingIndex];
-	else
-		thisPoint = obj->getShadowBase().mVertices[endingIndex];
-	float a=gMath->calculateAngle(lightSource->getPos(),thisPoint);
-	Vector v = Vector(cosf(a), sinf(a));
-	v.multiply(100000);
-	v.add(thisPoint);
-	temp.addPoint(v);
 
-	for (int i = startingIndex;i <= endingIndex;i++)
-		temp.addPoint(obj->getShadowBase().mVertices[i]);
+	if((a>0 && a<=PI/2) || (a>=-PI && a<-PI/2))
+	{
+		if(mod)
+			thisPoint = obj->getShadowBase().mVertices[startingIndex];
+		else
+			thisPoint = obj->getShadowBase().mVertices[endingIndex];
+		Vector v = Vector(cosf(a), sinf(a));
+		v.multiply(100000);
+		v.add(thisPoint);
+		temp.addPoint(v);
 
-	if(!mod)
-		thisPoint = obj->getShadowBase().mVertices[startingIndex];
-	else
-		thisPoint = obj->getShadowBase().mVertices[endingIndex];
-	a=gMath->calculateAngle(lightSource->getPos(),thisPoint);
-	v = Vector(cosf(a), sinf(a));
-	v.multiply(100000);
-	v.add(thisPoint);
-	temp.addPoint(v);
+		for (int i = startingIndex;i <= endingIndex;i++)
+			temp.addPoint(obj->getShadowBase().mVertices[i]);
 
-	gd3dDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
-	gGraphics->drawPolygon(&temp, D3DCOLOR_ARGB(0,255,255,255),false,0.0f);
-	gd3dDevice->SetRenderState(D3DRS_CULLMODE, D3DCULL_CCW);
+		if(!mod)
+			thisPoint = obj->getShadowBase().mVertices[startingIndex];
+		else
+			thisPoint = obj->getShadowBase().mVertices[endingIndex];
+		a=gMath->calculateAngle(lightSource->getPos(),thisPoint);
+		v = Vector(cosf(a), sinf(a));
+		v.multiply(100000);
+		v.add(thisPoint);
+		temp.addPoint(v);
+		gGraphics->drawPolygon(&temp, D3DCOLOR_ARGB(0,255,255,255),false,0);
+	}
 }

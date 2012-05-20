@@ -235,8 +235,10 @@ void Graphics::drawCustomFont(string text, int x, int y, int size, DWORD color)
 */
 void Graphics::drawSmallDxFont(string text, int x, int y, D3DCOLOR textColor)
 {
+	HR(gd3dDevice->SetRenderState(D3DRS_ZENABLE,D3DZB_FALSE));
 	RECT pos = {x, y, 0, 0};
 	HR(mFont->DrawText(0, text.c_str(), -1, &pos, DT_NOCLIP, textColor));
+	HR(gd3dDevice->SetRenderState(D3DRS_ZENABLE,D3DZB_TRUE));
 }
 
 
@@ -249,8 +251,10 @@ void Graphics::drawSmallDxFont(string text, int x, int y, D3DCOLOR textColor)
 */
 void Graphics::drawBigDxFont(string text, int x, int y, D3DCOLOR textColor)
 {
+	HR(gd3dDevice->SetRenderState(D3DRS_ZENABLE,D3DZB_FALSE));
 	RECT pos = {x, y, 0, 0};
 	HR(mBigFont->DrawText(0, text.c_str(), -1, &pos, DT_NOCLIP, textColor));
+	HR(gd3dDevice->SetRenderState(D3DRS_ZENABLE,D3DZB_TRUE));
 }
 
 //! Returns the sprite handler.

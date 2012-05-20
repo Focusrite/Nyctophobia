@@ -12,6 +12,8 @@ public:
 	void update(float dt);
 	void draw();
 
+	float getRange()				{return mRange;}
+
 	void setIntensity(float f)		{mIntensity = f;}
 	void setRange(int range)		{mRange = range;}
 private:
