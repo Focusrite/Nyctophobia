@@ -186,6 +186,12 @@
     <ClInclude Include="Editor.h">
       <Filter>Header Files\Game\Editor</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files\Technical\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files\Game\Menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectInput.cpp">
@@ -268,6 +274,12 @@
     </ClCompile>
     <ClCompile Include="Editor.cpp">
       <Filter>Source Files\Game\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files\Technical\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\Game\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

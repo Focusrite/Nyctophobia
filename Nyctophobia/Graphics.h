@@ -3,6 +3,7 @@
 
 #include <crtdbg.h>
 #include <string>
+#include <list>
 
 #include "d3dUtil.h"
 
@@ -90,6 +91,9 @@ public:
 	//! Draws a custom font.
 	void drawCustomFont(string text, int x, int y, int size = 8, DWORD color = 0xff000000);
 
+	//! Draw shadow shape from list
+	void drawShadowShape(std::list<Vector> *pointList, D3DCOLOR color = 0xff000000);
+
 	void onLostDevice();
 	void onResetDevice();
 
@@ -100,7 +104,7 @@ public:
 
 	DrawableTex2D* getAlphaTexture(){return mAlphaTexture;}
 
-	//TEEEEEEEEEST
+	//Temp
 	IDirect3DTexture9* mTest;
 	IDirect3DTexture9* mStencilCircle;
 private:

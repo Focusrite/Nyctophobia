@@ -207,6 +207,8 @@ float4 BlendTexPS(float2 tex0 : TEXCOORD0, float2 tex1 : TEXCOORD1) : COLOR //, 
 	float alpha = (b.r) * ((clr2.r+clr2.g+clr2.b)/3);
 
 	clr.a *= alpha;
+	if(clr.a<0.01)
+		clip(-1);
     return clr;
 }
 

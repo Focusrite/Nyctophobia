@@ -3,6 +3,7 @@
 #include "GameState.h"
 
 class Level;
+class HUD;
 
 class PlayState : public GameState 
 {
@@ -25,4 +26,5 @@ protected:
 private:
 	static PlayState mPlayState;
 	Level* mActiveLevel;
+	HUD* mHUD;
 };

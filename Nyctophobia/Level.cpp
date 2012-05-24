@@ -13,6 +13,8 @@
 #include "Player.h"
 #include "Terrain.h"
 #include "Effects.h"
+#include "Defines.h"
+#include "Collision.h"
 
 
 using namespace rapidxml;
@@ -36,7 +38,7 @@ void Level::draw()
 		if(!gGameState->drawingToAlpha())
 		{
 			gGraphics->getFXhandler()->setTerrainBlendMap(mTerrainList[i]->getBlendTexture());
-			gGraphics->drawBlendedTexture(mTerrainList[i]->getTexture(), mWidth/2, mHeight/2, mWidth, mHeight, 0, NULL, gGraphics->getAlphaTexture()->d3dTex(), mWidth/40);
+			gGraphics->drawBlendedTexture(mTerrainList[i]->getTexture(), mWidth/2+mLevelDisplacement.x, mHeight/2+mLevelDisplacement.y, mWidth, mHeight, 0, NULL, gGraphics->getAlphaTexture()->d3dTex(), mWidth/40);
 			gGraphics->getFXhandler()->setTerrainBlendMap(0);
 		}
 	}
@@ -50,14 +52,39 @@ void Level::draw()
 
 void Level::update(float dt)
 {
+	
+	mtv.collision = false;
 	for(int i = 0; i < mObjectList.size(); i++)
 	{
-		Object* o = mObjectList[i];
-		if(o->isDead()) {
-			removeObject(o);
+		Object* objectA = mObjectList[i];
+		if(objectA->isDead()) {
+			removeObject(objectA);
 			continue;
 		}
-		o->update(dt);
+		objectA->update(dt);
+		for(int j = i+1; j < mObjectList.size(); j++)
+		{
+			Object* objectB = mObjectList[j];
+
+			if(!objectA->isCollidable() || !objectB->isCollidable())
+				continue;
+
+			mtv = checkCollision(objectA->getShadowBase(), objectB->getShadowBase(), true);
+
+			// If there's a collision
+			if(mtv.collision)
+			{
+				//objectA->handleCollision(objectB,&mtv);
+				//objectB->handleCollision(objectA,&mtv);
+
+				if(objectA->getType() == PLAYER)
+					moveObjects(Vector(mtv.pushX, mtv.pushY));
+				else if(objectB->getType() == PLAYER)
+					moveObjects(Vector(-mtv.pushX, -mtv.pushY));
+				else
+					objectB->move(Vector(mtv.pushX, mtv.pushY));
+			}
+		}
 	}
 }
 
@@ -76,6 +103,16 @@ void Level::removeObject(Object* object)
 			delete mObjectList.at(i);
 			mObjectList.erase(mObjectList.begin()+i);
 	}
+}
+
+void Level::moveObjects(Vector dV)
+{
+	for(int i = 0; i<mObjectList.size(); i++)
+	{
+		if(mObjectList[i]->getType() != PLAYER)
+			mObjectList[i]->move(dV);
+	}
+	mLevelDisplacement += dV;
 }
 
 void Level::clear()
@@ -132,8 +169,13 @@ void Level::loadLevel(const char* path)
 
 	//Load player - do from savefile
 	xml_node<>* player = levelData->first_node("player");
-	Player *p = new Player(atoi(player->first_attribute("x")->value()), atoi(player->first_attribute("y")->value()));
+	Vector dV = Vector(atoi(player->first_attribute("x")->value()), atoi(player->first_attribute("y")->value()));
+	mLevelDisplacement = -dV;
+	Player *p = new Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2);
+	mPlayer = p;
 	addObject(p);
+	//Must happen after object/region load
+	moveObjects(dV);
 
 	//Load terrain
 	xml_node<>* terrain = levelData->first_node("terrain");

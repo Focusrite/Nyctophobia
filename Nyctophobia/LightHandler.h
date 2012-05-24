@@ -2,7 +2,10 @@
 #include <vector>
 #include "Object.h"
 #include "cPolygon.h"
+#include <list>
+#include "d3dUtil.h"
 
+class Player;
 class BasicLight;
 
 class LightHandler
@@ -19,11 +22,15 @@ public:
 	void doShadow();
 	void drawShadow(Object* obj, BasicLight* lightSource);
 
+	float getPlayerIllumination()	{return mCurrentShade;}
+
 private:
 	std::vector<Object*> mObstacles;
 	std::vector<BasicLight*> mEmitters;
 
-	cPolygon temp;
+	std::list<Vector> shadowPoints;
+	float mCurrentShade;
+	IDirect3DSurface9 *mReadSurface;
 };
 
 extern LightHandler* gLightHandler;

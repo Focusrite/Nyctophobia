@@ -6,6 +6,7 @@ Object::Object(float x, float y, float w, float h)
 	mDelete = false;
 	mDrawToAlpha = false;
 	setCastShadow(false);
+	mCollidable = false;
 }
 
 void Object::move(Vector dV)

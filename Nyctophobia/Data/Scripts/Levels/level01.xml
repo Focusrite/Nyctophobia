@@ -20,7 +20,7 @@
   <regions>
 
   </regions>
-  <levelData name="Template" campaign="0" campaignOrder="0" width="2000" height="2000">
+  <levelData name="Template" campaign="0" campaignOrder="0" width="5000" height="5000">
     <player x="200" y="200">
 
     </player>

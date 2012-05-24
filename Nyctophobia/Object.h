@@ -19,16 +19,18 @@ public:
 	Level* getLevel()					{return mLevel;}
 	ObjectType getType()				{return mObjectType;}
 	bool isDead()						{return mDelete;}
+	bool isCollidable()					{return mCollidable;}
 	bool getDrawToAlpha()				{return mDrawToAlpha;}
 	bool getCastsShadow()				{return mCastsShadow;}
 	cPolygon getShadowBase()			{return mShadowBase;}
 	
-	void setPos(Vector v)				{mPos = v;}
+	void setPos(Vector v)				{mPos = v; mShadowBase.setPos(mPos);}
 	void setId(int i)					{mId = i;}
 	void setLevel(Level* l)				{mLevel = l;}
 	void setType(ObjectType o)			{mObjectType = o;}
 	void setDrawToAlpha(bool b)			{mDrawToAlpha = b;}
 	void setCastShadow(bool b)			{mCastsShadow = b;}
+	void setCollidable(bool b)			{mCollidable = b;}
 	void setShadowBase(cPolygon base)	{mShadowBase = base;}
 
 	void kill()							{mDelete=true;}
@@ -40,9 +42,10 @@ private:
 	bool mDelete;
 	ObjectType mObjectType;
 
-	//Shadow data
+	//Shadow/Collision data
 	bool mDrawToAlpha;
 	bool mCastsShadow;
+	bool mCollidable;
 	cPolygon mShadowBase;
 };
 

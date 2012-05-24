@@ -92,13 +92,13 @@ Vector cPolygon::getPos()
 
 void cPolygon::setPos(Vector pos)
 {
-	Vector dV = mOrigin - pos;
+	//Vector dV = mOrigin - pos;
 	mOrigin = pos;
-	for(int i = 0; i < mVertices.size(); i++)	
+	/*for(int i = 0; i < mVertices.size(); i++)	
 	{
 		mVertices[i].x -= dV.x;
 		mVertices[i].y -= dV.y;
-	}
+	}*/
 }
 
 void cPolygon::rotate(float rotation)

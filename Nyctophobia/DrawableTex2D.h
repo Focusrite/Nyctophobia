@@ -23,6 +23,7 @@ public:
 	void onLostDevice();
 	void onResetDevice();
 
+	IDirect3DSurface9* getSurface();
 private:
 	// This class is not designed to be copied.
 	DrawableTex2D(const DrawableTex2D& rhs);

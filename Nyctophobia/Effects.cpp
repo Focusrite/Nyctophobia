@@ -46,6 +46,11 @@ void Effects::setShadowColorMod(float *mod)
 {
 	mFX->SetFloatArray(mhShadowColorMod, mod, 3);
 }
+void Effects::setShadowColorMod(float r, float g, float b)
+{
+	float rgb[] = {r,g,b};
+	mFX->SetFloatArray(mhShadowColorMod, rgb, 3);
+}
 
 void Effects::resetShadowColorMod()
 {

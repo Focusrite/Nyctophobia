@@ -11,16 +11,17 @@ Wall::Wall(Vector start, Vector end) : Object(start.x,start.y,1,1)
 	validate();
 	setType(WALL);
 	mThickness = 2;
-	
+	setCollidable(true);
 	setCastShadow(true);
 	Vector diff = start - end;
 	float angle = atan2f(diff.y, diff.x);
 	angle -= PI/2;
-	cPolygon p;
-	p.addPoint(Vector(start.x, start.y));
-	p.addPoint(Vector(start.x - cosf(angle) * mThickness, start.y - sinf(angle) * mThickness));
-	p.addPoint(Vector(end.x - cosf(angle) * mThickness, end.y - sinf(angle) * mThickness));
-	p.addPoint(Vector(end.x, end.y));
+	cPolygon p(start);
+	Vector dV = end-start;
+	p.addPoint(Vector(0, 0));
+	p.addPoint(Vector(-cosf(angle) * mThickness, -sinf(angle) * mThickness));
+	p.addPoint(Vector(dV.x - cosf(angle) * mThickness, dV.y - sinf(angle) * mThickness));
+	p.addPoint(Vector(dV.x, dV.y));
 	setShadowBase(p);
 
 	gLightHandler->addObstacle(this);
@@ -28,9 +29,12 @@ Wall::Wall(Vector start, Vector end) : Object(start.x,start.y,1,1)
 
 void Wall::draw() 
 {
-	if(gGameState->drawingToAlpha())
-		gGraphics->drawLine(getStartPos(), getEndPos(), 2, D3DCOLOR_XRGB(255,255,255),false);
-	
+	//if(gGameState->drawingToAlpha())
+	//	gGraphics->drawLine(getStartPos(), getEndPos(), 2, D3DCOLOR_XRGB(255,255,255),false);
+	//else
+	//{
+	//	//gGraphics->drawPolygon(&getShadowBase(), D3DCOLOR_ARGB(100,255,0,0));
+	//}
 }
 
 void Wall::update(float dt)

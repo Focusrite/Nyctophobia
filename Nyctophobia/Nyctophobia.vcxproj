@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="cPolygon.h" />
     <ClInclude Include="d3dUtil.h" />
     <ClInclude Include="Defines.h" />
@@ -25,6 +26,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GfxStats.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Level.h" />
@@ -48,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="cPolygon.cpp" />
     <ClCompile Include="DirectInput.cpp" />
     <ClCompile Include="DrawableTex2D.cpp" />
@@ -58,6 +61,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GfxStats.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LightHandler.cpp" />

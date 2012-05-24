@@ -21,6 +21,7 @@ public:
 	void setBlendMap(IDirect3DTexture9* texture);
 	void setRotation(float v);
 	void setShadowColorMod(float* mod);
+	void setShadowColorMod(float r, float g, float b);
 	void resetShadowColorMod();
 	void setTerrainBlendMap(IDirect3DTexture9* texture);
 

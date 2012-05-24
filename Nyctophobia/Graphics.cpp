@@ -845,18 +845,18 @@ void Graphics::drawPolygon(cPolygon* shape, D3DCOLOR color, bool filled, float z
 	for(int i = 0; i<shape->getTriangles().size()/3; i++) 
 	{
 		vertices[i*3+0].color = color;
-		vertices[i*3+0].pos.x = shape->getTriangles()[i*3+0].x;// + shape->getPos().x;
-		vertices[i*3+0].pos.y = shape->getTriangles()[i*3+0].y;// + shape->getPos().y;
+		vertices[i*3+0].pos.x = shape->getTriangles()[i*3+0].x + shape->getPos().x;
+		vertices[i*3+0].pos.y = shape->getTriangles()[i*3+0].y + shape->getPos().y;
 		vertices[i*3+0].pos.z = z;
 
 		vertices[i*3+1].color = color;
-		vertices[i*3+1].pos.x = shape->getTriangles()[i*3+1].x;// + shape->getPos().x;
-		vertices[i*3+1].pos.y = shape->getTriangles()[i*3+1].y;// + shape->getPos().y;
+		vertices[i*3+1].pos.x = shape->getTriangles()[i*3+1].x + shape->getPos().x;
+		vertices[i*3+1].pos.y = shape->getTriangles()[i*3+1].y + shape->getPos().y;
 		vertices[i*3+1].pos.z = z;
 
 		vertices[i*3+2].color = color;
-		vertices[i*3+2].pos.x = shape->getTriangles()[i*3+2].x;// + shape->getPos().x;
-		vertices[i*3+2].pos.y = shape->getTriangles()[i*3+2].y;// + shape->getPos().y;
+		vertices[i*3+2].pos.x = shape->getTriangles()[i*3+2].x + shape->getPos().x;
+		vertices[i*3+2].pos.y = shape->getTriangles()[i*3+2].y + shape->getPos().y;
 		vertices[i*3+2].pos.z = z;
 	}
 	// Unlock the vertex buffer
@@ -1041,4 +1041,41 @@ void Graphics::drawBlendedTexture(IDirect3DTexture9* texture, float x, float y, 
 	mFX->setRotation(0);
 	mFX->setBlendMap(0);
 	mFX->setTexture(0);
+}
+
+void Graphics::drawShadowShape(std::list<Vector> *vectorList, D3DCOLOR color)
+{
+	gd3dDevice->SetVertexDeclaration(RectVertex::Decl);
+	gd3dDevice->SetStreamSource(0, mVB_Rect, 0, sizeof(RectVertex));
+
+	HR(mFX->getFX()->SetTechnique(mFX->mhShadowTech));
+
+	// Lock and set the vertices position and texture coordinates
+	RectVertex *vertices = 0;
+	mVB_Rect->Lock(0, 0, (void**)&vertices, 0);
+
+	int i = 0;
+	for ( std::list<Vector>::iterator it=vectorList->begin() ; it != vectorList->end(); it++ )
+	{
+		vertices[i].color = color;
+		vertices[i].pos.x = it->x;
+		vertices[i].pos.y = it->y;
+		vertices[i].pos.z = 0;
+		i++;
+	}
+	// Unlock the vertex buffer
+	mVB_Rect->Unlock();
+
+	gd3dDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
+	
+	UINT numPasses = 0;
+	HR(mFX->getFX()->Begin(&numPasses,0));
+	for(int i = 0; i < numPasses; ++i)
+	{
+		HR(mFX->getFX()->BeginPass(i));
+		// Draw image
+		gd3dDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, vectorList->size()-2);
+		HR(mFX->getFX()->EndPass());
+	}
+	HR(mFX->getFX()->End());
 }

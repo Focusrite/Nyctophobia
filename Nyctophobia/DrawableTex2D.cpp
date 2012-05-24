@@ -39,10 +39,12 @@ void DrawableTex2D::onResetDevice()
 	if(mAutoGenMips)
 		usage |= D3DUSAGE_AUTOGENMIPMAP;
 
-	HR(D3DXCreateTexture(gd3dDevice, mWidth, mHeight, mMipLevels, usage, mTexFormat, D3DPOOL_DEFAULT, &mTex));
+	HR(D3DXCreateTexture(gd3dDevice, mWidth, mHeight, mMipLevels, usage, mTexFormat, D3DPOOL_DEFAULT, &mTex)); //D3DPOOL_DEFAULT
 	HR(D3DXCreateRenderToSurface(gd3dDevice, mWidth, mHeight, mTexFormat, mUseDepthBuffer, mDepthFormat, &mRTS));
 	HR(mTex->GetSurfaceLevel(0, &mTopSurf));
 }
+
+
 
 void DrawableTex2D::beginScene()
 {
@@ -52,4 +54,9 @@ void DrawableTex2D::beginScene()
 void DrawableTex2D::endScene()
 {
 	mRTS->EndScene(D3DX_FILTER_NONE);
+}
+
+IDirect3DSurface9* DrawableTex2D::getSurface()
+{
+	return mTopSurf;
 }
